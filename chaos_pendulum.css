@@ -1,0 +1,32 @@
+body{
+	margin-left:15%;
+	margin-right:15%;
+  color: green;
+}
+.h{
+	margin:0;
+}
+h1 {
+	font-size: 62;
+	font-family:rockwell;
+	font-weight: lighter;
+}
+div{
+	width: 49.4%;
+	margin:auto;
+	height: 110;
+	text-align: center;
+	border: 6px double;
+}
+h2{
+	font-size: 34px;
+	font-weight:lighter;
+	text-align: right;
+	font-family:mistral;
+}
+a:visited{
+	color:purple;
+}
+a:hover{
+	color: red;
+}

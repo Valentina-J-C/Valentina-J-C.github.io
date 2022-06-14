@@ -1,0 +1,51 @@
+<html lang="en">
+	<head>
+		<title>Chaos Theory: the Math behind It</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="chaos_math.css">
+		<meta name="keywords" content="chaos, chaos theory, double pendulum, deterministic" >
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" >
+	</head>
+	<body>
+		<div class=h2>
+			<h1 class=h> Chaos Theory </h1>
+			<h2 class=h>The Math Behind It&nbsp&nbsp</h2>
+		</div>
+		<br>
+		<br>
+		<p>	Chaotic systems contain one independent variable, usually time, and some dependent variable(s). If one dependent variable is present, it is affected only by the independent variable; however, if multiple dependent variables are present, dependent variables are affected by both the independent variable and other dependent variables.</p>
+		<h3><strong>Recursion</strong></h3>
+		<ul style="text-align:justify;">
+			<li>The equation(s) affecting dependent variable(s) employ recursion, or the use of a variable’s previous values to determine the current value, via either recursive equations or partial differentials.</li>
+			<br>
+			<li>Iterative equation <i>x<sub>(n+1)</sub>=f(x<sub>n</sub>)</i> calculates <i>x<sub>(n+1)</sub></i> based on a function <i>f</i> of the previous value <i>x<sub>n</sub></i>.</li>
+			<br>
+			<li>Partial derivative <i>∂x/∂t</i> computes the “velocity” of <i>x</i> as caused by <i>t</i>, while second-order partial derivative <i>(∂<sup>2</sup>x)/(∂t<sup>2</sup>)</i> computes the “acceleration” of <i>x</i> as caused by <i>t</i>. These partial derivatives do not consider any effects on velocity or acceleration of <i>x</i> caused by variables other than <i>t</i>; this is achieved by making other variables constant while differentiating, such that they cause no change in <i>x</i>.</li>
+		</ul>
+		<br>
+		<h3><strong>Phase Space</strong></h3>
+		<p><img src="https://www.researchgate.net/profile/Marius-Birlea/publication/235623609/figure/fig3/AS:299819454222338@1448493936371/The-Lorenz-attractor-in-phase-space.png" width="324.4" height="243.2"></p>
+		<ul>
+			<li>Continuous chaotic systems are systems in which the independent variable is continuous; that is, its domain includes uncountably infinite values (e.g., all real numbers). Discrete chaotic systems are systems in which the independent variable is quantized; that is, its domain includes only countable numbers (e.g., integers).</li>
+			<br>
+			<li>The dimension of a chaotic system refers to the number of dependent variables describing a given state. The Poincaré-Bendixson Theorem states that continuous chaotic systems must be ≥3-dimensional; however, discrete chaotic systems can be ≥1-dimensional.</li>
+			<br>
+			<li>Because of their multidimensionality, chaotic systems are commonly analyzed within phase space. Within phase space, a range of states over a given independent-variable-range are mapped using Cartesian coordinates against axes corresponding to individual dependent variables; for example, a system containing dependent variables <i>x</i>, <i>y</i>, and <i>z</i>, and independent variable <i>t</i> would map states using these dependent variables for a given <i>t</i>-range within a 3-dimensional phase space using the axes <i>x</i>, <i>y</i>, and <i>z</i>.</li>
+			<br>
+			<li>Because chaotic systems are dynamical, a phase space mapping of all dependent variables for any chaotic system will never cross the same point twice.</li>
+		</ul>
+		<br>
+		<h3><strong>Strange Attractor</strong></h3>
+		<ul>
+			<li>Forced/dampened chaotic systems are systems in which the sum of all dependent variables does not remain constant over a given independent-variable-range; these systems are affected by strange attractors.</li>
+			<br>
+			<li>A strange attractor converges states outside its body towards a trajectory within its body. Paradoxically, they also enact SDIC on states within the attractor, such that two infinitesimally different states within the attractor diverge significantly after a change in the independent variable.</li>
+			<br>
+			<li>Divergence and convergence both occur because the dependent variables all modulate one another; for example, variable x may cause variable y to diverge, which causes variable z to diverge, which causes variable x to converge, and so on, such that an unstable modulation cycle forms a strange attractor.</li>
+			<br>
+			<li>Because chaotic systems are deterministic, the trajectory of a strange attractor never crosses itself; thus, the attractor must be an infinitely complex fractal, giving it fractional dimension. This fractal dimension is what allows the aforementioned modulation cycle to remain unstable.</li>
+			<br>
+		</ul>
+		<p><a class=home href="chaos_hub.htm">&#8592 Back to Home</a></p>
+	</body>
+</html>

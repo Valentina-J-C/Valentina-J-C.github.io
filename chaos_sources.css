@@ -1,0 +1,37 @@
+body{
+	margin-left:15%;
+	margin-right:15%;
+}
+.h{
+	margin:0;
+}
+h1 {
+	font-size: 62;
+	font-family:rockwell;
+	font-weight: lighter;
+}
+div{
+	width: 49.4%;
+	margin:auto;
+	height: 110;
+	text-align: center;
+	border: 6px double;
+}
+h2{
+	font-size: 34px;
+	font-weight:lighter;
+	text-align: right;
+	font-family:mistral;
+}
+p{
+	padding-left:36px;
+	text-indent:-36px;
+}
+p.a{
+	text-indent:0;
+	padding-left:0;
+	font-size:20px;
+}
+a:hover{
+	color: red;
+}

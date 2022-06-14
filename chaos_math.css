@@ -1,0 +1,48 @@
+body{
+	background-color: FAC0C0;
+	font-size:22px;
+	color:C70000;
+}
+.h{
+	margin:0;
+}
+div.h2{
+	width: 38%;
+	margin:auto;
+	height: 110;
+	text-align: center;
+	background-color:white;
+	border: 6px double;
+	border-color:C70000;
+}
+h1 {
+	font-size: 62px;
+	font-family:rockwell;
+	font-weight: ligher;
+}
+h2{
+	font-size: 34px;
+	font-weight:lighter;
+	text-align: right;
+	font-family:mistral;
+}
+a.home{
+	font-size: 20px;
+	color: white;
+}
+a:visited{
+	color:purple;
+}
+a:hover{
+	color: red;
+}
+dl,hr,ol,ul,p,h3{
+	margin-left: 15%;
+	margin-right:15%;
+}
+ul{
+	list-style-type: none;
+}
+li::marker{
+	content: '\2192\00a0';
+}

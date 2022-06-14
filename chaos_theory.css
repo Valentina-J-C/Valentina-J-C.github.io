@@ -1,0 +1,56 @@
+body{
+	background-color: B2DFF6;
+	font-size:22px;
+	color:144289;
+}
+.h{
+	margin:0;
+}
+h1 {
+	color: 144289;
+	font-size: 62px;
+	font-family:rockwell;
+	font-weight: lighter;
+}
+div{
+	width: 38%;
+	margin:auto;
+	height: 110;
+	text-align: center;
+	background-color:white;
+	border: 6px double;
+	border-color:144289;
+}
+h2{
+	font-size: 34px;
+	font-weight:lighter;
+	color:144289;
+	text-align: right;
+	font-family:mistral;
+}
+p,dl,hr,ol{
+	margin-left: 15%;
+	margin-right:15%;
+}
+dd,ul,a{
+	font-size:20px;
+}
+hr{
+	border-bottom-color:144289;
+	border-style: double;
+}
+ul{
+	list-style-type: none;
+}
+li.u::marker{
+	content: '\2192\00a0';
+}
+a:visited{
+	color:purple;
+}
+a:hover{
+	color: red;
+}
+a{
+	color:white;
+}

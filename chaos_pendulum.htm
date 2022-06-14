@@ -1,0 +1,405 @@
+<html lang="en">
+	<head>
+		<title>Chaos Theory: A Double Pendulum</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="chaos_pendulum.css">
+		<meta name="keywords" content="chaos, chaos theory, double pendulum, deterministic" >
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" >
+	</head>
+	<body>
+		<script src="dp_vis_bg">
+		import * as wasm from './dp_vis_bg.wasm';
+
+const lTextDecoder = typeof TextDecoder === 'undefined' ? (0, module.require)('util').TextDecoder : TextDecoder;
+
+let cachedTextDecoder = new lTextDecoder('utf-8', { ignoreBOM: true, fatal: true });
+
+cachedTextDecoder.decode();
+
+let cachegetUint8Memory0 = null;
+function getUint8Memory0() {
+    if (cachegetUint8Memory0 === null || cachegetUint8Memory0.buffer !== wasm.memory.buffer) {
+        cachegetUint8Memory0 = new Uint8Array(wasm.memory.buffer);
+    }
+    return cachegetUint8Memory0;
+}
+
+function getStringFromWasm0(ptr, len) {
+    return cachedTextDecoder.decode(getUint8Memory0().subarray(ptr, ptr + len));
+}
+
+function _assertClass(instance, klass) {
+    if (!(instance instanceof klass)) {
+        throw new Error(`expected instance of ${klass.name}`);
+    }
+    return instance.ptr;
+}
+
+let cachegetInt32Memory0 = null;
+function getInt32Memory0() {
+    if (cachegetInt32Memory0 === null || cachegetInt32Memory0.buffer !== wasm.memory.buffer) {
+        cachegetInt32Memory0 = new Int32Array(wasm.memory.buffer);
+    }
+    return cachegetInt32Memory0;
+}
+/**
+* Colors: Models the rgba color type
+* red: u8
+* green: u8
+* blue: u8
+* alpha: f64
+*/
+export class Colors {
+
+    static __wrap(ptr) {
+        const obj = Object.create(Colors.prototype);
+        obj.ptr = ptr;
+
+        return obj;
+    }
+
+    __destroy_into_raw() {
+        const ptr = this.ptr;
+        this.ptr = 0;
+
+        return ptr;
+    }
+
+    free() {
+        const ptr = this.__destroy_into_raw();
+        wasm.__wbg_colors_free(ptr);
+    }
+    /**
+    * @param {number} red
+    * @param {number} green
+    * @param {number} blue
+    * @param {number} alpha
+    * @returns {Colors}
+    */
+    static new(red, green, blue, alpha) {
+        const ret = wasm.colors_new(red, green, blue, alpha);
+        return Colors.__wrap(ret);
+    }
+    /**
+    *Creates a color object from hsl values
+    *adapted from http://en.wikipedia.org/wiki/HSL_color_space.
+    *Assumes h, s, and l are contained in the set [0, 1] and
+    *returns a Color object.
+    *
+    *@param   {f64}  hue                The hue
+    *@param   {f64}  saturation         The saturation
+    *@param   {f64}  lightness          The lightness
+    *@return  {f64}  Color              The Color object
+    * @param {number} hue
+    * @param {number} saturation
+    * @param {number} lightness
+    * @param {number} alpha
+    * @returns {Colors}
+    */
+    static new_hsla(hue, saturation, lightness, alpha) {
+        const ret = wasm.colors_new_hsla(hue, saturation, lightness, alpha);
+        return Colors.__wrap(ret);
+    }
+    /**
+    * @returns {string}
+    */
+    rgba() {
+        try {
+            const retptr = wasm.__wbindgen_add_to_stack_pointer(-16);
+            wasm.colors_rgba(retptr, this.ptr);
+            var r0 = getInt32Memory0()[retptr / 4 + 0];
+            var r1 = getInt32Memory0()[retptr / 4 + 1];
+            return getStringFromWasm0(r0, r1);
+        } finally {
+            wasm.__wbindgen_add_to_stack_pointer(16);
+            wasm.__wbindgen_free(r0, r1);
+        }
+    }
+}
+/**
+* Pendulum Struct
+* Members: p - Pendulum Structure
+*          line_color: Color of Rod
+*          bob_color:  Color of Bob
+*/
+export class Pendulum {
+
+    static __wrap(ptr) {
+        const obj = Object.create(Pendulum.prototype);
+        obj.ptr = ptr;
+
+        return obj;
+    }
+
+    __destroy_into_raw() {
+        const ptr = this.ptr;
+        this.ptr = 0;
+
+        return ptr;
+    }
+
+    free() {
+        const ptr = this.__destroy_into_raw();
+        wasm.__wbg_pendulum_free(ptr);
+    }
+    /**
+    * @param {number} m1
+    * @param {number} m2
+    * @param {number} a1
+    * @param {number} a2
+    * @param {number} l1
+    * @param {number} l2
+    * @param {number} damp_factor
+    * @returns {Pendulum}
+    */
+    static new(m1, m2, a1, a2, l1, l2, damp_factor) {
+        const ret = wasm.pendulum_new(m1, m2, a1, a2, l1, l2, damp_factor);
+        return Pendulum.__wrap(ret);
+    }
+    /**
+    * @param {number} m1
+    * @param {number} m2
+    * @param {number} a1
+    * @param {number} a2
+    * @param {number} l1
+    * @param {number} l2
+    * @param {number} damp_factor
+    * @param {Colors} line_color
+    * @param {Colors} bob_color
+    * @returns {Pendulum}
+    */
+    static new_with_color(m1, m2, a1, a2, l1, l2, damp_factor, line_color, bob_color) {
+        _assertClass(line_color, Colors);
+        var ptr0 = line_color.ptr;
+        line_color.ptr = 0;
+        _assertClass(bob_color, Colors);
+        var ptr1 = bob_color.ptr;
+        bob_color.ptr = 0;
+        const ret = wasm.pendulum_new_with_color(m1, m2, a1, a2, l1, l2, damp_factor, ptr0, ptr1);
+        return Pendulum.__wrap(ret);
+    }
+    /**
+    * @returns {number}
+    */
+    x1() {
+        const ret = wasm.pendulum_x1(this.ptr);
+        return ret;
+    }
+    /**
+    * @returns {number}
+    */
+    x2() {
+        const ret = wasm.pendulum_x2(this.ptr);
+        return ret;
+    }
+    /**
+    * @returns {number}
+    */
+    y1() {
+        const ret = wasm.pendulum_y1(this.ptr);
+        return ret;
+    }
+    /**
+    * @returns {number}
+    */
+    y2() {
+        const ret = wasm.pendulum_y2(this.ptr);
+        return ret;
+    }
+    /**
+    * @returns {number}
+    */
+    m1() {
+        const ret = wasm.pendulum_m1(this.ptr);
+        return ret;
+    }
+    /**
+    * @returns {number}
+    */
+    m2() {
+        const ret = wasm.pendulum_m2(this.ptr);
+        return ret;
+    }
+    /**
+    * @returns {number}
+    */
+    l1() {
+        const ret = wasm.pendulum_l1(this.ptr);
+        return ret;
+    }
+    /**
+    * @returns {number}
+    */
+    l2() {
+        const ret = wasm.pendulum_l2(this.ptr);
+        return ret;
+    }
+    /**
+    */
+    motion() {
+        wasm.pendulum_motion(this.ptr);
+    }
+}
+/**
+*/
+export class PendulumVector {
+
+    static __wrap(ptr) {
+        const obj = Object.create(PendulumVector.prototype);
+        obj.ptr = ptr;
+
+        return obj;
+    }
+
+    __destroy_into_raw() {
+        const ptr = this.ptr;
+        this.ptr = 0;
+
+        return ptr;
+    }
+
+    free() {
+        const ptr = this.__destroy_into_raw();
+        wasm.__wbg_pendulumvector_free(ptr);
+    }
+    /**
+    * @returns {PendulumVector}
+    */
+    static new() {
+        const ret = wasm.pendulumvector_new();
+        return PendulumVector.__wrap(ret);
+    }
+    /**
+    * @returns {number}
+    */
+    size() {
+        const ret = wasm.pendulumvector_size(this.ptr);
+        return ret >>> 0;
+    }
+    /**
+    * @param {Pendulum} pendulum
+    */
+    add(pendulum) {
+        _assertClass(pendulum, Pendulum);
+        var ptr0 = pendulum.ptr;
+        pendulum.ptr = 0;
+        wasm.pendulumvector_add(this.ptr, ptr0);
+    }
+    /**
+    * @param {number} index
+    */
+    remove(index) {
+        wasm.pendulumvector_remove(this.ptr, index);
+    }
+    /**
+    * @param {number} index
+    * @returns {number}
+    */
+    item_x1(index) {
+        const ret = wasm.pendulumvector_item_x1(this.ptr, index);
+        return ret;
+    }
+    /**
+    * @param {number} index
+    * @returns {number}
+    */
+    item_x2(index) {
+        const ret = wasm.pendulumvector_item_x2(this.ptr, index);
+        return ret;
+    }
+    /**
+    * @param {number} index
+    * @returns {number}
+    */
+    item_y1(index) {
+        const ret = wasm.pendulumvector_item_y1(this.ptr, index);
+        return ret;
+    }
+    /**
+    * @param {number} index
+    * @returns {number}
+    */
+    item_y2(index) {
+        const ret = wasm.pendulumvector_item_y2(this.ptr, index);
+        return ret;
+    }
+    /**
+    * @param {number} index
+    */
+    item_motion(index) {
+        wasm.pendulumvector_item_motion(this.ptr, index);
+    }
+    /**
+    * @param {number} index
+    * @returns {string}
+    */
+    item_line_color(index) {
+        try {
+            const retptr = wasm.__wbindgen_add_to_stack_pointer(-16);
+            wasm.pendulumvector_item_line_color(retptr, this.ptr, index);
+            var r0 = getInt32Memory0()[retptr / 4 + 0];
+            var r1 = getInt32Memory0()[retptr / 4 + 1];
+            return getStringFromWasm0(r0, r1);
+        } finally {
+            wasm.__wbindgen_add_to_stack_pointer(16);
+            wasm.__wbindgen_free(r0, r1);
+        }
+    }
+    /**
+    * @param {number} index
+    * @returns {string}
+    */
+    item_bob_color(index) {
+        try {
+            const retptr = wasm.__wbindgen_add_to_stack_pointer(-16);
+            wasm.pendulumvector_item_bob_color(retptr, this.ptr, index);
+            var r0 = getInt32Memory0()[retptr / 4 + 0];
+            var r1 = getInt32Memory0()[retptr / 4 + 1];
+            return getStringFromWasm0(r0, r1);
+        } finally {
+            wasm.__wbindgen_add_to_stack_pointer(16);
+            wasm.__wbindgen_free(r0, r1);
+        }
+    }
+    /**
+    * @param {number} index
+    * @returns {number}
+    */
+    item_m1(index) {
+        const ret = wasm.pendulumvector_item_m1(this.ptr, index);
+        return ret;
+    }
+    /**
+    * @param {number} index
+    * @returns {number}
+    */
+    item_m2(index) {
+        const ret = wasm.pendulumvector_item_m2(this.ptr, index);
+        return ret;
+    }
+    /**
+    * @param {number} index
+    * @returns {number}
+    */
+    item_l1(index) {
+        const ret = wasm.pendulumvector_item_l1(this.ptr, index);
+        return ret;
+    }
+    /**
+    * @param {number} index
+    * @returns {number}
+    */
+    item_l2(index) {
+        const ret = wasm.pendulumvector_item_l2(this.ptr, index);
+        return ret;
+    }
+}
+
+export function __wbindgen_throw(arg0, arg1) {
+    throw new Error(getStringFromWasm0(arg0, arg1));
+};
+
+
+		</script>
+	</body>
+</html>
